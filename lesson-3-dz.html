@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /*1. С помощью цикла while вывести все простые числа в промежутке от 0 до 100 */
+    
+    var i = 3;
+    var j
+    while (i<=100) {
+        j = 2;
+ 	while (j<i) { 
+            if (i%j === 0){ 
+                break;
+            } 
+            else {
+                ++j;
+            }
+        }
+        if (j ===i) {
+        console.log(i);
+        } 
+        ++i;
+    } 
+    
+    /*2. С этого урока начинаем работать с функционалом интернет-магазина. Предположим, есть сущность корзины. Нужно реализовать функционал подсчета стоимости корзины в зависимости от находящихся в ней товаров.
+    3. Товары в корзине хранятся в массиве. Задачи:
+
+    a) Организовать такой массив для хранения товаров в корзине;
+
+    b) Организовать функцию countBasketPrice, которая будет считать стоимость корзины.
+
+    */
+    
+    var basket = [
+        {
+            name: 'a',
+            price: 100,
+            counts: 2,
+        },
+        {
+            name: 'b',
+            price: 120,
+            counts: 3,
+        },
+        {
+            name: 'c',
+            price: 140,
+            counts: 1,
+        },
+        {
+            name: 'd',
+            price: 180,
+            counts: 2,
+        }
+, ]
+function countBasketPrice() {
+    var sum = 0;
+    for (item of basket) {
+        var itemSum = 0;
+        itemSum=item.price*item.counts;
+        sum+=itemSum;    };
+    return (sum)
+}
+    console.log (countBasketPrice());
+    
+    /*4.*Вывести с помощью цикла for числа от 0 до 9, не используя тело цикла. Выглядеть это должно так:
+
+    for(…){// здесь пусто}
+
+    */
+     for(var i = 0; i<9; i++, console.log(i)) {}  
+    
+    /*4) *Нарисовать пирамиду с помощью console.log, как показано на рисунке, только у вашей пирамиды должно быть 20 рядов, а не 5:
+
+    x xx xxx xxxx xxxxx
+    */
+
+    var str = " ";    
+    for (var i = 0; i<20; i++) {
+        console.log(str += "x")
+    }
+        
+    </script>
+</body>
+</html>
