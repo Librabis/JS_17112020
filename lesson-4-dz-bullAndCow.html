@@ -35,26 +35,26 @@
 
         function guessNumber() {
             var result = prompt("Введите четырёхзначное число (-1 - закончить игру)", 1234); // указала, что необходимо ввести четырёхзначное число, в подсказке указала четырехзначное число
-            var gameIsRunning //проверка на то, что игра идет
+            var gameIsRunning = true //проверка на то, что игра идет
                 // пока игрок не угадал число
                 // while (gameIsRunning) {
                 // выход из игры
             if (parseInt(result) == -1) {
                 gameIsRunning = false;
             }
-            result = result.split("") // сразу получаем массив из введенного числа
-            while (gameIsRunning && result.length != 4) {
-                result = prompt("Введите четырёхзначное число (-1 - закончить игру)", 1234);
-                if (parseInt(result) == 0 || isNaN(parseInt(result))) {
-                    alert("Вы не ввели число");
+            while (gameIsRunning) {
+                result = result.split("") // сразу получаем массив из введенного числа
+                while (result.length != 4) {
+                    result = prompt("Введите четырёхзначное число (-1 - закончить игру)", 1234);
+                    if (parseInt(result) == 0 || isNaN(parseInt(result))) {
+                        alert("Вы не ввели число");
+                    }
+                    else {
+                        alert("Вы ввели не четырёхзначное число")
+                    }
                 }
-                else {
-                    alert("Вы ввели не четырёхзначное число")
-                }
-            }
-            if (result.length == 4) { // проверяем введено ли четырёхзначное число
-                gameIsRunning = true
-                while (gameIsRunning) {
+                if (result.length == 4) { // проверяем введено ли четырёхзначное число
+                    gameIsRunning = true
                     var answer = checkNumber(result); //answer[false,1,1]
                     if (answer[0]) {
                         // число угадано
