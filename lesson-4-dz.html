@@ -9,18 +9,20 @@
 <body>
     <script>
         // var numb = parseInt(Math.random()*999+0)     // задаём рандомное число
-        var numb = parseInt(prompt("Введите число от 0 до 999"))    // или запрашиваем у пользователя ввод числа
-        if (isNaN(parseInt(numb))) {    // проверяем, что пользователь ввёл число
-            alert("Вы не ввели число");
-        }
-        else if (numb > 999) { // проверяем не превышает ли число 999
-            console.log("Число превышает допустимые значения");
-            var num = [];
-            console.log(num)
-        }
-        else {
-            numb = String(numb); // приводим к типу "строка", чтобы привести к массиву
-            num = numb.split("") // разделяем элементы строки на элементы массива 
+        var numbr = parseInt(prompt("Введите число от 0 до 999")) // или запрашиваем у пользователя ввод числа
+        console.log(separate(numbr))
+        
+        function separate(numb) {
+            if (isNaN(parseInt(numb))) { // проверяем, что пользователь ввёл число
+                alert("Вы не ввели число");
+            }
+            else if (numb > 999) { // проверяем не превышает ли число 999
+                console.log("Число превышает допустимые значения");
+                var num = [];
+            }
+            else {
+                numb = String(numb); // приводим к типу "строка", чтобы привести к массиву
+                num = numb.split("") // разделяем элементы строки на элементы массива 
                 switch (num.length) { // выводим результат в зависимости от длинны массива
                 case (3):
                     num.hundreds = num[num.length - 3]
@@ -29,7 +31,8 @@
                 case (1):
                     num.units = num[num.length - 1]
                 }
-            console.log(num)
+            }
+            return num
         }
     </script>
 </body>
