@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        var playingFields = document.createElement("table");
+        var playingFieldsRow, playingFieldsCell, litera;
+        playingFields.classList.add("playingFields")
+        for (var i = 0; i < 10; i++) {
+            playingFieldsRow = document.createElement("tr");
+            playingFields.append(playingFieldsRow);
+            playingFieldsRow.classList.add("playingFieldsRow")
+            document.querySelectorAll(".playingFieldsRow")
+            for (var j = 0; j < 10; j++) {
+                playingFieldsCell = document.createElement("td");
+                playingFieldsRow.append(playingFieldsCell);
+                if (i == 0 || i == 9) {
+                    playingFieldsCell.style.height = "30px"
+                }
+                else if (j == 0 || j == 9) {
+                    playingFieldsCell.style.width = "30px"
+                }
+                else {
+                    playingFieldsCell.style.width = "60px"
+                    playingFieldsCell.style.height = "60px"
+                }
+                if (i % 2 == 0) {
+                    if (j % 2 == 0) {
+                        playingFieldsCell.style.backgroundColor = "black";
+                    }
+                    else {
+                        playingFieldsCell.style.backgroundColor = "blue"
+                    }
+                }
+                else {
+                    if (j % 2 != 0) {
+                        playingFieldsCell.style.backgroundColor = "black"
+                    }
+                    else {
+                        playingFieldsCell.style.backgroundColor = "blue"
+                    }
+                }
+            }
+        }
+        document.querySelector("div").append(playingFields)
+    </script>
+</body>
+
+</html>
