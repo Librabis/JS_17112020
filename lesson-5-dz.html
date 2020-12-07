@@ -11,6 +11,8 @@
     <div></div>
     <script>
     createPlayingFields() // создание игрового поля
+    createFigureName () // указываем первые буквы названий фигур
+    createFigureImage () // располагаем фигуры
         
     function createPlayingFields (){
         // создаём шахматное поле
@@ -80,6 +82,35 @@
             document.querySelectorAll(".playingFieldsRow")[i].lastElementChild.innerText = j
             document.querySelectorAll(".playingFieldsRow")[i].lastElementChild.style.transform = "rotate(180deg)"
             document.querySelectorAll(".playingFieldsRow")[i].lastElementChild.classList.add("numbers-letters")
+        }
+    }
+    
+    function createFigureName () {
+        var names = ["Л", "К", "С", "К", "Ф", "С", "К", "Л"]
+        for (var childCounter = 1; childCounter < 9; childCounter++){
+            document.querySelectorAll(".playingFieldsRow")[1].children[childCounter].innerText = names[childCounter-1]
+            document.querySelectorAll(".playingFieldsRow")[1].children[childCounter].classList.add("blackFigureName")
+            document.querySelectorAll(".playingFieldsRow")[2].children[childCounter].innerText = "П"
+            document.querySelectorAll(".playingFieldsRow")[2].children[childCounter].classList.add("blackFigureName")
+            document.querySelectorAll(".playingFieldsRow")[7].children[childCounter].innerText = "П"
+            document.querySelectorAll(".playingFieldsRow")[7].children[childCounter].classList.add("whiteFigureName")
+            document.querySelectorAll(".playingFieldsRow")[8].children[childCounter].innerText = names[childCounter-1]
+            document.querySelectorAll(".playingFieldsRow")[8].children[childCounter].classList.add("whiteFigureName")
+            
+        }
+    }
+
+        function createFigureImage () {
+        var figure = ["&#9820;", "&#9822;", "&#9821;", "&#9818;", "&#9819;", "&#9821;", "&#9822;", "&#9820;"]
+        for (var childCounter = 1; childCounter < 9; childCounter++){
+            document.querySelectorAll(".playingFieldsRow")[1].children[childCounter].innerHTML = figure[childCounter-1]
+            document.querySelectorAll(".playingFieldsRow")[1].children[childCounter].classList.add("blackFigure")
+            document.querySelectorAll(".playingFieldsRow")[2].children[childCounter].innerHTML = "&#9823;"
+            document.querySelectorAll(".playingFieldsRow")[2].children[childCounter].classList.add("blackFigure")
+            document.querySelectorAll(".playingFieldsRow")[7].children[childCounter].innerHTML = "&#9823;"
+            document.querySelectorAll(".playingFieldsRow")[7].children[childCounter].classList.add("whiteFigure")
+            document.querySelectorAll(".playingFieldsRow")[8].children[childCounter].innerHTML = figure[childCounter-1]
+            document.querySelectorAll(".playingFieldsRow")[8].children[childCounter].classList.add("whiteFigure")
         }
     }
 

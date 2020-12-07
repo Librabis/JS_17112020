@@ -5,3 +5,15 @@
     font-weight: 900;
     color: #6C3600
 } 
+
+.blackFigure {
+    text-align: center;
+    font-size: 40px;
+    color: black;
+}
+
+.whiteFigure {
+    text-align: center;
+    font-size: 40px;
+    color: white; 
+}
