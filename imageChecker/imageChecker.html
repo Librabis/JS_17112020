@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="big_picture" style = "height: 251px" ></div>
+    <div id="gallery"> 
+    <img id="image_1" src="img/gallery/small/1.jpg"> 
+    <img id="image_2" src="img/gallery/small/2.jpg"> 
+    <img id="image_3" src="img/gallery/small/3.jpg"> 
+    </div>
+    <script>
+        function init() {
+            var images = document.getElementsByTagName("img");
+            for (var i = 0; i < images.length; i++) {
+                images[i].onclick = changeBigPicture;
+            }
+        }
+
+        function changeBigPicture(eventObj) { // функция передающая отклик
+            var appDiv = document.getElementById("big_picture");// присваиваем переменной блок
+            appDiv.innerHTML = "";//помещаем в блок пустое место
+            var eventElement = eventObj.target;//создаем переменную и присваиваем ей адрес в html документе
+            console.log (eventElement)
+            var imageNameParts = eventElement.id.split("_");//присваиваем новой переменной значение которое мы находим по адресу кликнутой, её айди  разделяем на массив
+            console.log (imageNameParts)
+            var src = "img/gallery/big/" + imageNameParts[1] + ".jpg";// берем первое значение из массива, т.к. оно обозначает цифру и подставляем в переменную кторую в дальнейшем сможем использовать для создания ссылки
+            var imageDomElement = document.createElement("img");// создаем элемент
+            imageDomElement.src = src;// присваиваем элементу атрибут значение которого равно значению нашей ссылки
+            appDiv.appendChild(imageDomElement);//помещаем в документ как ребенок дива
+        }
+        window.onload = init;
+    </script>
+</body>
+
+</html>

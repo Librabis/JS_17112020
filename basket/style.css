@@ -1,0 +1,17 @@
+.good {
+    display: flex;
+    align-items: center
+}
+
+span, p , button {
+    font-family: Arial; 
+    font-weight: 900;
+}
+
+td {
+    border: solid black 1px
+}
+
+table {
+    border-collapse: collapse;
+}

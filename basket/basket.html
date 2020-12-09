@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Basket</title>
+    <link rel="stylesheet" href="style.css"> </head>
+
+<body>
+    <div class="basket"> <span class="goodsCounts">Товаров в вашей корзине: </span><span>0</span>
+        <table class="basketTable"> </table>
+    </div>
+    <div class="goods">
+        <div class="good"> <img src="img/tufly.jpg" alt="Туфли" class="goodsPhoto" height="200">
+            <div class="goodsDeskript"> <span class="name">Туфли</span>
+                <div><span class="price">5000,00</span><span class="value"> рублей</span></div>
+                <p class="description">Самые удобные стильные кожаные туфли</p>
+                <button class="buy">Купить</button>
+            </div>
+        </div>
+        <div class="good"> <img src="img/batilony.jpg" height="200" alt="Ботильоны" class="goodsPhoto">
+            <div class="goodsDeskript"> <span class="name">Ботильоны</span>
+                <div><span class="price">12000,00</span><span class="value"> рублей</span></div>
+                <p class="description">Самые удобные яркие стильные кожаные ботильоны</p>
+                <button class="buy">Купить</button>
+            </div>
+        </div>
+        <div class="good"> <img src="img/snikery.jpg" alt="Сникеры" class="goodsPhoto" height="200">
+            <div class="goodsDeskript"> <span class="name">Сникеры</span>
+                <div><span class="price">7000,00</span><span class="value"> рублей</span></div>
+                <p class="description">Дерзкие разноцветные сникеры</p>
+                <button class="buy">Купить</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function init() {
+            var clickToBuy = document.querySelectorAll(".buy");
+            for (var i = 0; i < clickToBuy.length; i++) {
+                clickToBuy[i].onclick = ceateGoodsObject;
+            }
+        }
+
+        function ceateGoodsObject(event) {
+            var eventElement = event.target; // опреоделили элемент на который нажали
+            var checkGood = eventElement.parentElement // определили родительский блок нажатого элемента
+            var count = 0
+            var good = {
+                    name: checkGood.querySelector(".name").innerText
+                    , count: ++count
+                    , price: checkGood.querySelector(".price").innerText
+                , } // создаём объект товара
+            addGoodToBasket(good)
+        }
+
+        function addGoodToBasket(good) {
+            if (!document.querySelector(".basketTable").firstElementChild) {
+                var tableHeader = document.createElement("tr")
+                document.querySelector(".basketTable").append(tableHeader);
+                var tableHeaderNameData = ["Наименование товара", "Количество", "Цена в рублях"]
+                for (var i = 0; i < tableHeaderNameData.length; i++) {
+                    var tableHeaderName = document.createElement("td")
+                    console.log(tableHeaderName)
+                    tableHeader.append(tableHeaderName)
+                    tableHeaderName.innerText = tableHeaderNameData[i]
+                    console.log(tableHeaderNameData[i])
+                }
+            }
+            var goodInBasket = document.createElement("tr")
+            document.querySelector(".basketTable").append(goodInBasket);
+            for (var option in good) {
+                var goodOption = document.createElement("td");
+                goodOption.classList.add("tableData")
+                goodInBasket.append(goodOption);
+                goodOption.innerText = good[option]
+            }
+//            var tableFooter = document.createElement("tr")
+//            document.querySelector(".basketTable").append(tableFooter)
+//            countBasket() создать функцию, считающую товары в корзине, поместить результат в футер таблицы
+        }
+
+//        function countBasket() {
+//            var sum = 0;
+//            for (item of basket) {
+//                var itemSum = 0;
+//                itemSum = item.price * item.counts;
+//                sum += itemSum;
+//            };
+//            return (sum)
+//        }
+        window.onload = init
+    </script>
+</body>
+
+</html>
