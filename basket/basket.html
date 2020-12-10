@@ -13,21 +13,21 @@
     <div class="goods">
         <div class="good"> <img src="img/tufly.jpg" alt="Туфли" class="goodsPhoto" height="200">
             <div class="goodsDeskript"> <span class="name">Туфли</span>
-                <div><span class="price">5000,00</span><span class="value"> рублей</span></div>
+                <div><span class="price">5000.00</span><span class="value"> рублей</span></div>
                 <p class="description">Самые удобные стильные кожаные туфли</p>
                 <button class="buy">Купить</button>
             </div>
         </div>
         <div class="good"> <img src="img/batilony.jpg" height="200" alt="Ботильоны" class="goodsPhoto">
             <div class="goodsDeskript"> <span class="name">Ботильоны</span>
-                <div><span class="price">12000,00</span><span class="value"> рублей</span></div>
+                <div><span class="price">12000.00</span><span class="value"> рублей</span></div>
                 <p class="description">Самые удобные яркие стильные кожаные ботильоны</p>
                 <button class="buy">Купить</button>
             </div>
         </div>
         <div class="good"> <img src="img/snikery.jpg" alt="Сникеры" class="goodsPhoto" height="200">
             <div class="goodsDeskript"> <span class="name">Сникеры</span>
-                <div><span class="price">7000,00</span><span class="value"> рублей</span></div>
+                <div><span class="price">7000.00</span><span class="value"> рублей</span></div>
                 <p class="description">Дерзкие разноцветные сникеры</p>
                 <button class="buy">Купить</button>
             </div>
@@ -74,20 +74,36 @@
                 goodInBasket.append(goodOption);
                 goodOption.innerText = good[option]
             }
-//            var tableFooter = document.createElement("tr")
-//            document.querySelector(".basketTable").append(tableFooter)
-//            countBasket() создать функцию, считающую товары в корзине, поместить результат в футер таблицы
+            
+            
+            var tableFooter = document.createElement("tr")
+            tableFooter.classList.add("tableFooter")
+            console.log(document.querySelector(".basketTable").querySelectorAll3.children)
+            if (document.querySelector(".basketTable").lastElementChild == tableFooter) {
+                document.querySelector(".basketTable").removeChild(".tableFooter")
+            }
+            document.querySelector(".basketTable").append(tableFooter)
+            var tableFooterNameData = ["", "Итого", countBasket()]
+            for (var j = 0; j < tableFooterNameData.length; j++) {
+                var tableFooterName = document.createElement("td")
+                tableFooter.append(tableFooterName)
+                tableFooterName.innerText = tableFooterNameData[i]
+                console.log(tableFooterNameData[i])
+            }
         }
 
-//        function countBasket() {
-//            var sum = 0;
-//            for (item of basket) {
-//                var itemSum = 0;
-//                itemSum = item.price * item.counts;
-//                sum += itemSum;
-//            };
-//            return (sum)
-//        }
+        function countBasket() {
+            var sum = 0
+            var row = document.querySelector(".basketTable").querySelectorAll("tr")
+            var cell = document.querySelector(".basketTable").querySelector("tr").querySelectorAll("td")
+            for (var j = 1; j > 0 && j < row.length - 1; j++) {
+                var cell = +(document.querySelector(".basketTable").querySelectorAll("tr")[j].querySelectorAll("td")[2].innerText)
+                console.log(cell)
+                sum += cell
+            }
+            console.log(sum)
+            return (sum)
+        }
         window.onload = init
     </script>
 </body>
