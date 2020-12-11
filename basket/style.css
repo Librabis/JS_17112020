@@ -1,15 +1,22 @@
+body {
+    font-family: Arial; 
+    font-weight: 900;
+}
+
+.container {
+    width: 600px;
+    margin: 0 auto;
+}
+
 .good {
     display: flex;
     align-items: center
 }
 
-span, p , button {
-    font-family: Arial; 
-    font-weight: 900;
-}
-
 td {
-    border: solid black 1px
+    border: dotted black 3px;
+    text-align: center;
+    width: 200px;
 }
 
 table {
