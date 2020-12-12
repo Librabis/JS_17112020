@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Basket</title>
+    <link rel="stylesheet" href="style.css"> </head>
+
+<body>
+    <div class="container">
+        <div class="basket"> <span class="goodsCounts">Товаров в вашей корзине: 0 </span>
+            <table class="basketTable"> </table>
+        </div>
+        <div class="goods">
+            <div class="good"> <img src="img/tufly.jpg" alt="Туфли" class="goodsPhoto" height="200">
+                <div class="goodsDeskript"> <span class="name">Туфли</span>
+                    <div><span class="price">5000.00</span><span class="value"> рублей</span></div>
+                    <p class="description">Самые удобные стильные кожаные туфли</p>
+                    <button class="buy">Купить</button>
+                </div>
+            </div>
+            <div class="good"> <img src="img/batilony.jpg" height="200" alt="Ботильоны" class="goodsPhoto">
+                <div class="goodsDeskript"> <span class="name">Ботильоны</span>
+                    <div><span class="price">12000.00</span><span class="value"> рублей</span></div>
+                    <p class="description">Самые удобные яркие стильные кожаные ботильоны</p>
+                    <button class="buy">Купить</button>
+                </div>
+            </div>
+            <div class="good"> <img src="img/snikery.jpg" alt="Сникеры" class="goodsPhoto" height="200">
+                <div class="goodsDeskript"> <span class="name">Сникеры</span>
+                    <div><span class="price">7000.00</span><span class="value"> рублей</span></div>
+                    <p class="description">Дерзкие разноцветные сникеры</p>
+                    <button class="buy">Купить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function init() {
+            var clickToBuy = document.querySelectorAll(".buy");
+            for (var i = 0; i < clickToBuy.length; i++) {
+                clickToBuy[i].onclick = ceateGoodsObject;
+            }
+        }
+
+        function ceateGoodsObject(event) {
+            var eventElement = event.target; // опреоделили элемент на который нажали
+            var checkGood = eventElement.parentElement // определили родительский блок нажатого элемента
+            var count = 0
+            var good = {
+                    name: checkGood.querySelector(".name").innerText
+                    , count: ++count
+                    , price: checkGood.querySelector(".price").innerText
+                , } // создаём объект товара
+            addGoodToBasket(good)
+        }
+
+        function addGoodToBasket(good) {
+            if (!document.querySelector(".basketTable").firstElementChild) { // добавление шапки таблицы корзины
+                var tableHeader = document.createElement("tr")
+                document.querySelector(".basketTable").append(tableHeader);
+                var tableHeaderNameData = ["Наименование товара", "Количество", "Цена в рублях"]
+                for (var i = 0; i < tableHeaderNameData.length; i++) {
+                    var tableHeaderName = document.createElement("td")
+                    tableHeader.append(tableHeaderName)
+                    tableHeaderName.innerText = tableHeaderNameData[i]
+                }
+            }
+            else {
+                var lastRow = document.querySelector(".basketTable").lastElementChild // удаление нижней части таблицы, при добавлении новых товаров
+                lastRow.parentElement.removeChild(lastRow)
+            }
+            var goodInBasket = document.createElement("tr") // добавление товаров в таблицу корзины по клику
+            document.querySelector(".basketTable").append(goodInBasket);
+            for (var option in good) {
+                var goodOption = document.createElement("td");
+                goodOption.classList.add("tableData")
+                goodInBasket.append(goodOption);
+                goodOption.innerText = good[option]
+            }
+            var tableFooter = document.createElement("tr") // добавление товаров в корзину
+            tableFooter.classList.add("tableFooter")
+            document.querySelector(".basketTable").append(tableFooter)
+            var tableFooterNameData = ["", "Всего к оплате", countBasket()]
+            for (var j = 0; j < tableFooterNameData.length; j++) {
+                var tableFooterName = document.createElement("td")
+                tableFooter.append(tableFooterName)
+                tableFooterName.innerText = tableFooterNameData[j]
+            }
+            var items = document.querySelector(".goodsCounts")
+            var countItems = countGoods()
+            items = ("Товаров в вашей корзине: " + countItems)
+            document.querySelector(".goodsCounts").innerText = items
+        }
+
+        function countBasket() { // функция подсчёта корзины
+            var sum = 0
+            var row = document.querySelector(".basketTable").querySelectorAll("tr")
+            var cell = document.querySelector(".basketTable").querySelector("tr").querySelectorAll("td")
+            for (var j = 1; j > 0 && j < row.length - 1; j++) {
+                cell = +(document.querySelector(".basketTable").querySelectorAll("tr")[j].querySelectorAll("td")[2].innerText)
+                sum += cell
+            }
+            return (sum.toFixed(2))
+        }
+
+        function countGoods() {
+            var item = 0
+            var rowItem = document.querySelector(".basketTable").querySelectorAll("tr")
+            var cellItem = document.querySelector(".basketTable").querySelector("tr").querySelectorAll("td")
+            for (var k = 1; k > 0 && k < rowItem.length - 1; k++) {
+                var cellItem = +(document.querySelector(".basketTable").querySelectorAll("tr")[k].querySelectorAll("td")[1].innerText)
+                item += cellItem
+            }
+            console.log(item)
+            return (item)
+        }
+        window.onload = init
+    </script>
+</body>
+
+</html>
